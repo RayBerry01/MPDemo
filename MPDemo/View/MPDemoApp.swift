@@ -11,7 +11,7 @@ import SwiftUI
 struct MPDemoApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            CardView()
         }
     }
 }
