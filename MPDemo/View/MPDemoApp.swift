@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct MPDemoApp: App {
+    
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    
     var body: some Scene {
         WindowGroup {
-            CardView()
+            CardView(cardService: NetworkService())
         }
     }
 }

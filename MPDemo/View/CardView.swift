@@ -9,77 +9,88 @@ import SwiftUI
 
 struct CardView: View {
     
-    @StateObject private var viewModel = CardViewModel()
+    let cardService: CardServiceProtocol
+    @ObservedObject var viewModel: CardViewModel
+ 
+    init(cardService: CardServiceProtocol) {
+        self.cardService = cardService
+        self.viewModel = CardViewModel(cardService: cardService)
+    }
     
     var body: some View {
         NavigationView {
-         
-            if let cardInfo = viewModel.cardData {
-                
-                VStack(alignment: .center) {
-                    Text("MoonPig")
-                        .font(.title)
-                        .padding(.horizontal)
-                        .padding(.top, 16)
+            
+            ZStack {
+                Color.pink.opacity(0.20)
+                    .edgesIgnoringSafeArea(.all)
+                if let cardInfo = viewModel.cardData {
+                    
+                    VStack(alignment: .center) {
+                        Text("Moonpig")
+                            .font(.title.weight(.bold))
+                            .padding(.horizontal)
+                            .padding(.top, 16)
                         
-                ScrollView {
-                        LazyVGrid(columns: [
-                            
-                            GridItem(.adaptive(minimum: 100), spacing: 16),
-                            GridItem(.adaptive(minimum: 100), spacing: 16),
-                            GridItem(.adaptive(minimum: 100), spacing: 16)
-                            
-                        ], spacing: 16) {
-                            ForEach(cardInfo.products) { product in
-                                NavigationLink(destination: CardDetail(product: product)) {
-                                    VStack(alignment: .leading) {
+                        ScrollView {
+                            LazyVGrid(columns: [
+                                
+                                GridItem(.adaptive(minimum: 100), spacing: 16),
+                                GridItem(.adaptive(minimum: 100), spacing: 16),
+                                GridItem(.adaptive(minimum: 100), spacing: 16)
+                                
+                            ], spacing: 16) {
+                                ForEach(cardInfo.products) { product in
+                                    NavigationLink(destination: CardDetail(viewModel: self.viewModel, product: product)) {
                                         
-                                        AsyncImage(url: URL(string: product.productImage.link.href ))
-                                        { phase in
-                                            switch phase {
-                                            case .empty:
-                                                ProgressView()
-                                            case .success (let image):
-                                                image
-                                                    .resizable()
-                                                    .frame(width: 80, height: 100)
-                                            case .failure:
-                                                ProgressView()
-//                                                Image(systemName: "exclamationmark.triangle")
-                                            @unknown default:
-                                                ProgressView()
-//                                                Image(systemName: "exclamationmark.triangle")
+                                        VStack(alignment: .leading) {
+                                            
+                                            AsyncImage(url: URL(string: product.productImage.link.href ))
+                                            { phase in
+                                                switch phase {
+                                                case .empty:
+                                                    ProgressView()
+                                                case .success (let image):
+                                                    image
+                                                        .resizable()
+                                                        .frame(width: 80, height: 100)
+                                                 
+                                                case .failure:
+                                                    ProgressView()
+                                                    
+                                                @unknown default:
+                                                    ProgressView()
+                                                }
                                             }
+                                            
                                         }
-                                        
-                                        
-                                      
-                                       
-                                        Text(product.price.currency + String(product.price.value))
-                                        //  Text(product.title)
+                              
+                                        .frame(width: 80, height: viewModel.generateRandomNumber())
+                                        .padding()
+                                        .background(Color.white)
+                                        .cornerRadius(10)
+                                        .shadow(radius: 3)
                                     }
-                                    .padding()
-                                    .background(Color.white)
-                                    .cornerRadius(10)
-                                    .shadow(radius: 3)
                                 }
                             }
+                            .padding()
                         }
-                        .padding()
                     }
-                
+                } else {
+                    ProgressView()
                 }
             }
         }
-        .task {
-            await viewModel.retrieveCardInfo()
+            .task {
+                
+                    await viewModel.retrieveCardInfo()
+                
+            }
         }
-        
-    }
+    
 }
 
-struct CardView_Previews: PreviewProvider {
-    static var previews: some View {
-        CardView()
-    }
-}
+//struct CardView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CardView()
+//    }
+//}

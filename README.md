@@ -24,13 +24,19 @@ Demo extracting info from the following API
 . Uses Async image for image loads
 . Uses Lazy Grids
 . No Cocoapods or 3rd party libraries needed
+. Network Error handling in place
+. URL caching set in AppDelegate for Async Image loads
  
+ 
+First screen - just displays card image 
+
+Second screen - displays details - remove html tags and displays image
  
 TODO
-. Error handling
-. Improve UI
 . XCTest
-. Coordinator design pattern + Combine
+. Coordinator design pattern + Combine to replace NavigationLink 
+. replace random frame size to a sequence frame size
+. Moonpig icon
 
  
 ## Credits
