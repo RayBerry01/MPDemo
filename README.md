@@ -19,25 +19,32 @@ Demo extracting info from the following API
  
 ## Usage
  
-. Retrieves API information using Async Await in SwiftUI
-. Uses MVVM approach
-. Uses Async image for image loads
-. Uses Lazy Grids
-. No Cocoapods or 3rd party libraries needed
-. Network Error handling in place
-. URL caching set in AppDelegate for Async Image loads
- 
- 
-First screen - just displays card image 
+* Retrieves API information using Async Await in SwiftUI
+* Uses MVVM approach
+* Uses Async image for image loads
+* Uses Lazy Grids
+* No Cocoapods or 3rd party libraries needed
+* Network Error handling in place
+* URL caching set in AppDelegate for Async Image loads
+* Rotation fixed to portrait
 
-Second screen - displays details - remove html tags and displays image
  
-TODO
-. XCTest
-. Coordinator design pattern + Combine to replace NavigationLink 
-. replace random frame size to a sequence frame size
-. Moonpig icon
+## Screens 
 
+- First screen: displays card image with sequenced card size 
+
+- Second screen: displays details - remove html tags and displays image and text
+
+ 
+## TODO
+
+* XCUITest
+* Coordinator design pattern + Combine to replace NavigationLink 
+* replace random frame size to a sequence frame size
+* Moonpig icon
+* Launch screen
+* Resizing of images on screen
+* Light and Dark mode colors - set in Colour assets
  
 ## Credits
  

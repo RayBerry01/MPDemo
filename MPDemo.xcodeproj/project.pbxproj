@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		88E88F952A99CBD300C1C410 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E88F942A99CBD300C1C410 /* NetworkService.swift */; };
+		88E88F972A99CCA300C1C410 /* CardServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E88F962A99CCA300C1C410 /* CardServiceProtocol.swift */; };
+		88E88F992A99CDE200C1C410 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E88F982A99CDE200C1C410 /* Product.swift */; };
+		88E88F9B2A99CE5000C1C410 /* Price.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E88F9A2A99CE5000C1C410 /* Price.swift */; };
+		88E88F9D2A99CF2D00C1C410 /* ProductImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E88F9C2A99CF2D00C1C410 /* ProductImage.swift */; };
+		88E88F9F2A99CFEC00C1C410 /* Link.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E88F9E2A99CFEC00C1C410 /* Link.swift */; };
+		88E88FA52A99D37900C1C410 /* MockCardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E88FA42A99D37900C1C410 /* MockCardService.swift */; };
 		88E9C10A2A972434002B0FE4 /* CardDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E9C1092A972434002B0FE4 /* CardDetail.swift */; };
 		88E9C11A2A97A8D6002B0FE4 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 88E9C1192A97A8D6002B0FE4 /* README.md */; };
 		88E9C11B2A97A8D6002B0FE4 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 88E9C1192A97A8D6002B0FE4 /* README.md */; };
@@ -42,6 +49,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		88E88F942A99CBD300C1C410 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		88E88F962A99CCA300C1C410 /* CardServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardServiceProtocol.swift; sourceTree = "<group>"; };
+		88E88F982A99CDE200C1C410 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		88E88F9A2A99CE5000C1C410 /* Price.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Price.swift; sourceTree = "<group>"; };
+		88E88F9C2A99CF2D00C1C410 /* ProductImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductImage.swift; sourceTree = "<group>"; };
+		88E88F9E2A99CFEC00C1C410 /* Link.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Link.swift; sourceTree = "<group>"; };
+		88E88FA42A99D37900C1C410 /* MockCardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCardService.swift; sourceTree = "<group>"; };
 		88E9C1092A972434002B0FE4 /* CardDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetail.swift; sourceTree = "<group>"; };
 		88E9C1192A97A8D6002B0FE4 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		88E9C11E2A97EEA2002B0FE4 /* String+stripOutHtml.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+stripOutHtml.swift"; sourceTree = "<group>"; };
@@ -85,6 +99,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		88E88FA02A99D16D00C1C410 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				88E88F962A99CCA300C1C410 /* CardServiceProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		88E88FA32A99D2D400C1C410 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				88E88F942A99CBD300C1C410 /* NetworkService.swift */,
+				88E88FA42A99D37900C1C410 /* MockCardService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		88E9C11D2A97EE77002B0FE4 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -96,11 +127,11 @@
 		88F8F0A82A95D23D00ED8FC3 = {
 			isa = PBXGroup;
 			children = (
-				88E9C1192A97A8D6002B0FE4 /* README.md */,
 				88F8F0B32A95D23D00ED8FC3 /* MPDemo */,
 				88F8F0C42A95D23F00ED8FC3 /* MPDemoTests */,
 				88F8F0CE2A95D23F00ED8FC3 /* MPDemoUITests */,
 				88F8F0B22A95D23D00ED8FC3 /* Products */,
+				88E9C1192A97A8D6002B0FE4 /* README.md */,
 			);
 			sourceTree = "<group>";
 		};
@@ -117,13 +148,15 @@
 		88F8F0B32A95D23D00ED8FC3 /* MPDemo */ = {
 			isa = PBXGroup;
 			children = (
+				88F966632A988ED60077033A /* AppDelegate.swift */,
+				88F8F0B82A95D23F00ED8FC3 /* Assets.xcassets */,
 				88E9C11D2A97EE77002B0FE4 /* Extensions */,
 				88F8F0E02A95DAD500ED8FC3 /* Model */,
+				88F8F0BA2A95D23F00ED8FC3 /* Preview Content */,
+				88E88FA02A99D16D00C1C410 /* Protocols */,
+				88E88FA32A99D2D400C1C410 /* Services */,
 				88F8F0E12A95DB0100ED8FC3 /* View */,
 				88F8F0E42A95DBC400ED8FC3 /* ViewModel */,
-				88F8F0B82A95D23F00ED8FC3 /* Assets.xcassets */,
-				88F8F0BA2A95D23F00ED8FC3 /* Preview Content */,
-				88F966632A988ED60077033A /* AppDelegate.swift */,
 			);
 			path = MPDemo;
 			sourceTree = "<group>";
@@ -157,6 +190,10 @@
 			isa = PBXGroup;
 			children = (
 				88F8F0DE2A95D34800ED8FC3 /* Card.swift */,
+				88E88F9C2A99CF2D00C1C410 /* ProductImage.swift */,
+				88E88F982A99CDE200C1C410 /* Product.swift */,
+				88E88F9A2A99CE5000C1C410 /* Price.swift */,
+				88E88F9E2A99CFEC00C1C410 /* Link.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -312,11 +349,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88E88F972A99CCA300C1C410 /* CardServiceProtocol.swift in Sources */,
 				88F8F0E32A95DBB600ED8FC3 /* CardViewModel.swift in Sources */,
 				88E9C10A2A972434002B0FE4 /* CardDetail.swift in Sources */,
 				88E9C11F2A97EEA2002B0FE4 /* String+stripOutHtml.swift in Sources */,
 				88F8F0DF2A95D34800ED8FC3 /* Card.swift in Sources */,
+				88E88F9F2A99CFEC00C1C410 /* Link.swift in Sources */,
+				88E88F9D2A99CF2D00C1C410 /* ProductImage.swift in Sources */,
+				88E88F952A99CBD300C1C410 /* NetworkService.swift in Sources */,
 				88F966642A988ED60077033A /* AppDelegate.swift in Sources */,
+				88E88FA52A99D37900C1C410 /* MockCardService.swift in Sources */,
+				88E88F992A99CDE200C1C410 /* Product.swift in Sources */,
+				88E88F9B2A99CE5000C1C410 /* Price.swift in Sources */,
 				88F8F0B52A95D23D00ED8FC3 /* MPDemoApp.swift in Sources */,
 				88F8F0E82A961FAD00ED8FC3 /* CardView.swift in Sources */,
 			);

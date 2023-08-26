@@ -9,17 +9,8 @@ import XCTest
 @testable import MPDemo
 
 final class MPDemoTests: XCTestCase {
-
-    class MockCardService: CardServiceProtocol {
-        var mockServiceCalled = false
-        
-        func cards() async -> MPDemo.Card? {
-           mockServiceCalled = true 
-            return nil
-        }
-    }
     
-    @MainActor func testRandomNumberGenerator() {
+    func testRandomNumberGenerator() {
         let sut = CardViewModel(cardService: MockCardService())
         let result = sut.generateRandomNumber()
         
@@ -41,11 +32,10 @@ final class MPDemoTests: XCTestCase {
         
     }
     
-    func testCardService() async {
+    func testCardServiceIsCalled() async {
         let sut = MockCardService()
         
         let _ = await sut.cards()
         XCTAssertTrue(sut.mockServiceCalled)
-        
     }
 }
