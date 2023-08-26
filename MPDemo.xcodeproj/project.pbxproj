@@ -14,6 +14,7 @@
 		88E88F9D2A99CF2D00C1C410 /* ProductImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E88F9C2A99CF2D00C1C410 /* ProductImage.swift */; };
 		88E88F9F2A99CFEC00C1C410 /* Link.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E88F9E2A99CFEC00C1C410 /* Link.swift */; };
 		88E88FA52A99D37900C1C410 /* MockCardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E88FA42A99D37900C1C410 /* MockCardService.swift */; };
+		88E88FA72A99D63300C1C410 /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E88FA62A99D63300C1C410 /* CustomColor.swift */; };
 		88E9C10A2A972434002B0FE4 /* CardDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E9C1092A972434002B0FE4 /* CardDetail.swift */; };
 		88E9C11A2A97A8D6002B0FE4 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 88E9C1192A97A8D6002B0FE4 /* README.md */; };
 		88E9C11B2A97A8D6002B0FE4 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 88E9C1192A97A8D6002B0FE4 /* README.md */; };
@@ -56,6 +57,7 @@
 		88E88F9C2A99CF2D00C1C410 /* ProductImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductImage.swift; sourceTree = "<group>"; };
 		88E88F9E2A99CFEC00C1C410 /* Link.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Link.swift; sourceTree = "<group>"; };
 		88E88FA42A99D37900C1C410 /* MockCardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCardService.swift; sourceTree = "<group>"; };
+		88E88FA62A99D63300C1C410 /* CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
 		88E9C1092A972434002B0FE4 /* CardDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetail.swift; sourceTree = "<group>"; };
 		88E9C1192A97A8D6002B0FE4 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		88E9C11E2A97EEA2002B0FE4 /* String+stripOutHtml.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+stripOutHtml.swift"; sourceTree = "<group>"; };
@@ -116,6 +118,14 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		88E88FA82A99DCD000C1C410 /* Colors */ = {
+			isa = PBXGroup;
+			children = (
+				88E88FA62A99D63300C1C410 /* CustomColor.swift */,
+			);
+			path = Colors;
+			sourceTree = "<group>";
+		};
 		88E9C11D2A97EE77002B0FE4 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -150,6 +160,7 @@
 			children = (
 				88F966632A988ED60077033A /* AppDelegate.swift */,
 				88F8F0B82A95D23F00ED8FC3 /* Assets.xcassets */,
+				88E88FA82A99DCD000C1C410 /* Colors */,
 				88E9C11D2A97EE77002B0FE4 /* Extensions */,
 				88F8F0E02A95DAD500ED8FC3 /* Model */,
 				88F8F0BA2A95D23F00ED8FC3 /* Preview Content */,
@@ -357,6 +368,7 @@
 				88E88F9F2A99CFEC00C1C410 /* Link.swift in Sources */,
 				88E88F9D2A99CF2D00C1C410 /* ProductImage.swift in Sources */,
 				88E88F952A99CBD300C1C410 /* NetworkService.swift in Sources */,
+				88E88FA72A99D63300C1C410 /* CustomColor.swift in Sources */,
 				88F966642A988ED60077033A /* AppDelegate.swift in Sources */,
 				88E88FA52A99D37900C1C410 /* MockCardService.swift in Sources */,
 				88E88F992A99CDE200C1C410 /* Product.swift in Sources */,
@@ -535,9 +547,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bluelightcard.MPDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -563,9 +578,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bluelightcard.MPDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

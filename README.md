@@ -1,4 +1,4 @@
-#  MPDemo - by Ray Berry
+#  MPDemo
 
 Demo extracting info from the following API  
         https://moonpig.github.io/tech-test-frontend/search.json
@@ -27,7 +27,8 @@ Demo extracting info from the following API
 * Network Error handling in place
 * URL caching set in AppDelegate for Async Image loads
 * Rotation fixed to portrait
-
+* Light and Dark mode colors - set in Assets
+* Designed for iPhones only - more work to set up on iPads
  
 ## Screens 
 
@@ -41,10 +42,10 @@ Demo extracting info from the following API
 * XCUITest
 * Coordinator design pattern + Combine to replace NavigationLink 
 * replace random frame size to a sequence frame size
-* Moonpig icon
+* MP icon to be loaded
 * Launch screen
 * Resizing of images on screen
-* Light and Dark mode colors - set in Colour assets
+* Further work needed on sizing to use on ipads
  
 ## Credits
  

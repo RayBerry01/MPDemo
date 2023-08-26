@@ -17,19 +17,19 @@ struct CardView: View {
         self.viewModel = CardViewModel(cardService: cardService)
     }
     
+    //MARK: MainView
+    
     var body: some View {
         NavigationView {
             
             ZStack {
-                Color.pink.opacity(0.20)
-                    .edgesIgnoringSafeArea(.all)
+                CustomColor.backgroundColor
+                .edgesIgnoringSafeArea(.all)
+                
                 if let cardInfo = viewModel.cardData {
                     
                     VStack(alignment: .center) {
-                        Text("Moonpig")
-                            .font(.title.weight(.bold))
-                            .padding(.horizontal)
-                            .padding(.top, 16)
+                        titleView()
                         
                         ScrollView {
                             LazyVGrid(columns: [
@@ -39,38 +39,7 @@ struct CardView: View {
                                 GridItem(.adaptive(minimum: 100), spacing: 16)
                                 
                             ], spacing: 16) {
-                                ForEach(cardInfo.products) { product in
-                                    NavigationLink(destination: CardDetail(viewModel: self.viewModel, product: product)) {
-                                        
-                                        VStack(alignment: .leading) {
-                                            
-                                            AsyncImage(url: URL(string: product.productImage.link.href ))
-                                            { phase in
-                                                switch phase {
-                                                case .empty:
-                                                    ProgressView()
-                                                case .success (let image):
-                                                    image
-                                                        .resizable()
-                                                        .frame(width: 80, height: 100)
-                                                 
-                                                case .failure:
-                                                    ProgressView()
-                                                    
-                                                @unknown default:
-                                                    ProgressView()
-                                                }
-                                            }
-                                            
-                                        }
-                              
-                                        .frame(width: 80, height: viewModel.generateRandomNumber())
-                                        .padding()
-                                        .background(Color.white)
-                                        .cornerRadius(10)
-                                        .shadow(radius: 3)
-                                    }
-                                }
+                                navigationView(cardInfo: cardInfo)
                             }
                             .padding()
                         }
@@ -86,7 +55,54 @@ struct CardView: View {
                 
             }
         }
+   
+    //MARK: SubViews
     
+    fileprivate func titleView() -> some View {
+        return Text("Moonpig")
+            .font(.title.weight(.bold))
+            .padding(.horizontal)
+            .padding(.top, 16)
+    }
+    
+    fileprivate func imageView(product: Product) -> VStack<AsyncImage<_ConditionalContent<_ConditionalContent<ProgressView<EmptyView, EmptyView>, some View>, _ConditionalContent<ProgressView<EmptyView, EmptyView>, ProgressView<EmptyView, EmptyView>>>>> {
+        return VStack(alignment: .leading) {
+            
+            AsyncImage(url: URL(string: product.productImage.link.href ))
+            { phase in
+                switch phase {
+                case .empty:
+                    ProgressView()
+                case .success (let image):
+                    image
+                        .resizable()
+                        .frame(width: 80, height: 100)
+                    
+                case .failure:
+                    ProgressView()
+                    
+                @unknown default:
+                    ProgressView()
+                }
+            }
+            
+        }
+    }
+  
+    fileprivate func navigationView(cardInfo: Card) -> ForEach<[Product], UUID, NavigationLink<some View, CardDetail>> {
+        return ForEach(cardInfo.products) { product in
+            NavigationLink(destination: CardDetail(viewModel: self.viewModel, product: product)) {
+                
+                imageView(product: product)
+                
+                    .frame(width: 80, height: viewModel.generateRandomNumber())
+                    .padding()
+                    .background(Color.white)
+                    .cornerRadius(10)
+                    .shadow(radius: 3)
+            }
+        }
+    }
 }
 
 //struct CardView_Previews: PreviewProvider {

@@ -13,8 +13,29 @@ struct CardDetail: View {
     
     let product: Product
     
+    //MARK: MainView
+    
     var body: some View {
         VStack {
+            itemView()
+            textView()
+        }.padding()
+    }
+    
+    //MARK: SubViews
+    fileprivate func textView() -> VStack<TupleView<(Spacer, Text, Spacer, Text)>> {
+        return VStack {
+            Spacer()
+            Text(product.description.stripOutHtml() ?? "")
+            Spacer()
+            Text(product.price.currency + String(product.price.value))
+                .foregroundColor(.pink)
+                .font(.largeTitle.weight(.bold))
+        }
+    }
+    
+    fileprivate func itemView() -> some View {
+        return VStack {
             //URL Caching done via AppDelegate
             AsyncImage(url: URL(string: product.productImage.link.href ))
             { phase in
@@ -24,20 +45,14 @@ struct CardDetail: View {
                 case .success (let image):
                     image
                         .resizable()
-                        .frame(width: 200, height: 300)                                             
+                        .frame(width: 200, height: 300)
                 case .failure:
                     ProgressView()
                 @unknown default:
                     ProgressView()
                 }
             }
-            Spacer()
-            Text(product.description.stripOutHtml() ?? "")
-            Spacer()
-            Text(product.price.currency + String(product.price.value))
-                .foregroundColor(.pink)
-                .font(.largeTitle.weight(.bold))
-        }.padding()
+        }.border(CustomColor.backgroundColor, width: 4)
     }
 }
 
