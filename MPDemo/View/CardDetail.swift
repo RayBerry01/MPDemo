@@ -52,7 +52,9 @@ struct CardDetail: View {
                     ProgressView()
                 }
             }
+            .cornerRadius(10)
         }.border(CustomColor.backgroundColor, width: 4)
+            .shadow(radius: 3)
     }
 }
 

@@ -42,7 +42,7 @@ Demo extracting info from the following API
 * XCUITest
 * Coordinator design pattern + Combine to replace NavigationLink 
 * replace random frame size to a sequence frame size
-* MP icon to be loaded
+* Icon to be loaded in Assets
 * Launch screen
 * Resizing of images on screen
 * Further work needed on sizing to use on ipads
