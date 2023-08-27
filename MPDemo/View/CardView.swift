@@ -11,19 +11,46 @@ struct CardView: View {
     
     let cardService: CardServiceProtocol
     @ObservedObject var viewModel: CardViewModel
- 
+  
+    let smallCard  = UIScreen.screenHeight/5
+    let mediumCard = UIScreen.screenHeight/4
+    let largeCard = UIScreen.screenHeight/3
+    
     init(cardService: CardServiceProtocol) {
         self.cardService = cardService
         self.viewModel = CardViewModel(cardService: cardService)
     }
     
-    fileprivate func textView() -> some View {
+    //MARK: Main View
+    var body: some View {
+        NavigationView {
+            
+            ZStack {
+                CustomColor.backgroundColor
+                    .edgesIgnoringSafeArea(.all)
+                if let cardInfo = viewModel.cardData {
+                    VStack(alignment: .center) {
+                        textView()
+                        cardGridView(cardInfo: cardInfo)
+                    }
+                } else {
+                    ProgressView()
+                }
+            }
+        }
+            .task {
+                    await viewModel.retrieveCardInfo()
+            }
+        }
+    
+    //MARK: SubViews
+    func textView() -> some View {
         return Text("Moonpig")
             .font(.title.weight(.bold))
             .padding(.top, 16)
     }
     
-    fileprivate func imageView(product: Product) -> VStack<AsyncImage<_ConditionalContent<_ConditionalContent<ProgressView<EmptyView, EmptyView>, some View>, _ConditionalContent<ProgressView<EmptyView, EmptyView>, ProgressView<EmptyView, EmptyView>>>>> {
+    func imageView(product: Product) -> some View{
         return VStack(alignment: .leading) {
             
             AsyncImage(url: URL(string: product.productImage.link.href ))
@@ -34,7 +61,7 @@ struct CardView: View {
                 case .success (let image):
                     image
                         .resizable()
-                        .frame(width: 80, height: 100)
+                        .aspectRatio(0.6, contentMode: .fit)
                     
                 case .failure:
                     ProgressView()
@@ -43,79 +70,44 @@ struct CardView: View {
                     ProgressView()
                 }
             }
-            
         }
     }
     
-    var body: some View {
-        NavigationView {
+    func cardGridView(cardInfo: Card) -> some View {
+        return ScrollView {
             
-            ZStack {
-                CustomColor.backgroundColor
-                    .edgesIgnoringSafeArea(.all)
-                if let cardInfo = viewModel.cardData {
+            let heightSequence = [smallCard,largeCard,mediumCard,largeCard,smallCard,mediumCard,mediumCard,smallCard,largeCard]
+            
+            LazyVGrid(columns: [
+                
+                GridItem(.adaptive(minimum: 100), spacing: 16),
+                GridItem(.adaptive(minimum: 100), spacing: 16),
+                GridItem(.adaptive(minimum: 100), spacing: 16)
+                
+            ], spacing: 16) {
+                ForEach(Array(cardInfo.products.enumerated()), id: \.element.id) { index, product in
                     
-                    VStack(alignment: .center) {
-                        textView()
-                        
-                        ScrollView {
-                            LazyVGrid(columns: [
-                                
-                                GridItem(.adaptive(minimum: 100), spacing: 16),
-                                GridItem(.adaptive(minimum: 100), spacing: 16),
-                                GridItem(.adaptive(minimum: 100), spacing: 16)
-                                
-                            ], spacing: 16) {
-                                //ForEach(cardInfo.products) { product in
-                                
-                                    ForEach(Array(cardInfo.products.enumerated()), id: \.element.id) { index, product in
-                                      
-                                
-                                    NavigationLink(destination: CardDetail(viewModel: self.viewModel, product: product)) {
-                                        let wrappedIndex = index % 9
-                                        imageView(product:product)
-                                        
-                                        .frame(width: 80, height: viewModel.generateHeightSequence(sequence: wrappedIndex))
-                                        .padding()
-                                        .background(Color.white)
-                                        .cornerRadius(10)
-                                        .shadow(radius: 3)
-                                    }
-                                }
-                            }
+                    NavigationLink(destination: CardDetail(viewModel: self.viewModel, product: product)) {
+                        let wrappedIndex = index % heightSequence.count
+                        imageView(product:product)
+                            .frame(width: 80, height: heightSequence[wrappedIndex])
                             .padding()
-                        }
+                            .background(Color.white)
+                            .cornerRadius(10)
+                            .shadow(radius: 3)
                     }
-                } else {
-                    ProgressView()
                 }
             }
+            .padding()
         }
-            .task {
-                
-                    await viewModel.retrieveCardInfo()
-                
-            }
-        }
+    }
 }
-
-
-//    ForEach(Array(cardInfo.products.enumerated()), id: \.element.id) { index, product in
-//        NavigationLink(destination: CardDetail(viewModel: self.viewModel, product: product)) {
-//            VStack(alignment: .leading) {
-//                AsyncImage(url: URL(string: product.productImage.link.href )) { phase in
-//                    switch phase {
-//                    case .empty:
-//                        ProgressView()
-//                    case .success (let image):
-//                        let wrappedIndex = index % 8
-//                        image
-//                            .resizable()
-//                            .frame(width: 80, height: viewModel.generateHeightSequence(sequence: wrappedIndex))
-
 
 //struct CardView_Previews: PreviewProvider {
 //    static var previews: some View {
 //        CardView()
 //    }
 //}
+
+
+

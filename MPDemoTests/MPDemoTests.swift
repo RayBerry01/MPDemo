@@ -10,14 +10,6 @@ import XCTest
 
 final class MPDemoTests: XCTestCase {
     
-    func testRandomNumberGenerator() {
-        let sut = CardViewModel(cardService: MockCardService())
-        let result = sut.generateRandomNumber()
-        
-        XCTAssertTrue(result >= 100)
-        XCTAssertTrue(result <= 300)
-    }
-    
     func testStripingOfHtmlWithNoHtml() {
         let expected = "dsfjhdshjdfshjdsfhjkdsfhjkfdsjhk"
         let result = expected.stripOutHtml()
@@ -37,5 +29,11 @@ final class MPDemoTests: XCTestCase {
         
         let _ = await sut.cards()
         XCTAssertTrue(sut.mockServiceCalled)
+    }
+    
+    func testSampleCard() {
+        let sut = MockCardService()
+        let result = sut.fetchSampleCard()
+        XCTAssertEqual(result?.price.value, 4.51)
     }
 }

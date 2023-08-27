@@ -23,7 +23,7 @@ struct CardDetail: View {
     }
     
     //MARK: SubViews
-    fileprivate func textView() -> VStack<TupleView<(Spacer, Text, Spacer, Text)>> {
+     func textView() ->  some View {
         return VStack {
             Spacer()
             Text(product.description.stripOutHtml() ?? "")
@@ -34,7 +34,7 @@ struct CardDetail: View {
         }
     }
     
-    fileprivate func itemView() -> some View {
+    func itemView() -> some View {
         return VStack {
             //URL Caching done via AppDelegate
             AsyncImage(url: URL(string: product.productImage.link.href ))
@@ -45,7 +45,7 @@ struct CardDetail: View {
                 case .success (let image):
                     image
                         .resizable()
-                        .frame(width: 200, height: 300)
+                        .aspectRatio(0.8, contentMode: .fit)
                 case .failure:
                     ProgressView()
                 @unknown default:
@@ -58,8 +58,17 @@ struct CardDetail: View {
     }
 }
 
-//struct CardDetail_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CardDetail()
-//    }
-//}
+struct CardDetail_Previews: PreviewProvider {
+    static var previews: some View {
+           let cardService = MockCardService() 
+           let viewModel = CardViewModel(cardService: cardService)
+           
+           if let sampleCard = cardService.fetchSampleCard() {
+               CardDetail(viewModel: viewModel, product: sampleCard)
+           } else {
+               Text("No product available for preview")
+           }
+       }
+}
+
+
