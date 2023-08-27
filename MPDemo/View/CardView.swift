@@ -38,10 +38,10 @@ struct CardView: View {
                 }
             }
         }
-            .task {
-                    await viewModel.retrieveCardInfo()
-            }
+        .task {
+            await viewModel.retrieveCardInfo()
         }
+    }
     
     //MARK: SubViews
     func textView() -> some View {
@@ -87,7 +87,7 @@ struct CardView: View {
             ], spacing: 16) {
                 ForEach(Array(cardInfo.products.enumerated()), id: \.element.id) { index, product in
                     
-                    NavigationLink(destination: CardDetail(viewModel: self.viewModel, product: product)) {
+                    NavigationLink(destination: CardDetail(viewModel: viewModel, product: product)) {
                         let wrappedIndex = index % heightSequence.count
                         imageView(product:product)
                             .frame(width: 80, height: heightSequence[wrappedIndex])
@@ -103,11 +103,10 @@ struct CardView: View {
     }
 }
 
-//struct CardView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CardView()
-//    }
-//}
-
-
-
+struct CardView_Previews: PreviewProvider {
+    static var previews: some View {
+        /// This calls NetworkService will pulls data from API
+        /// but this could be swapped out for mockService which  populates the data locally
+        return CardView(cardService: NetworkService())
+    }
+}

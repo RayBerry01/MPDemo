@@ -24,11 +24,13 @@ Demo extracting info from the following API
 * Uses Async image for image loads
 * Uses Lazy Grids
 * No Cocoapods or 3rd party libraries needed
-* Network Error handling in place
+* Network Error handling in place in NetworkService
+* Basic XCTests in place using MockService
 * URL caching set in AppDelegate for Async Image loads
 * Rotation fixed to portrait
 * Light and Dark mode colors - set in Assets
-* Designed for iPhones only - more work to set up on iPads
+* Designed for iPhones only - more work to set up on iPads - ran out of time
+* XCUITests started using BDD/GWT syntax
  
 ## Screens 
 
@@ -39,12 +41,10 @@ Demo extracting info from the following API
  
 ## TODO
 
-* XCUITest
+* XCUITest - to finish
 * Coordinator design pattern + Combine to replace NavigationLink 
-* replace random frame size to a sequence frame size
 * Icon to be loaded in Assets
 * Launch screen
-* Resizing of images on screen
 * Further work needed on sizing to use on ipads
  
 ## Credits

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CardDetail: View {
     
-    @StateObject var viewModel: CardViewModel
+    @ObservedObject var viewModel: CardViewModel
     
     let product: Product
     
@@ -59,16 +59,15 @@ struct CardDetail: View {
 }
 
 struct CardDetail_Previews: PreviewProvider {
+    /// Preview just shows a dummy image from MockCardService
     static var previews: some View {
-           let cardService = MockCardService() 
-           let viewModel = CardViewModel(cardService: cardService)
-           
-           if let sampleCard = cardService.fetchSampleCard() {
-               CardDetail(viewModel: viewModel, product: sampleCard)
-           } else {
-               Text("No product available for preview")
-           }
-       }
+        let cardService = MockCardService()
+        let viewModel = CardViewModel(cardService: cardService)
+        
+        if let sampleCard = cardService.fetchSampleCard() {
+            CardDetail(viewModel: viewModel, product: sampleCard)
+        } else {
+            Text("No product available for preview")
+        }
+    }
 }
-
-
