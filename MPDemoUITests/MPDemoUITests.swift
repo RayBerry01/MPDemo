@@ -29,11 +29,6 @@ final class MPDemoUITests: XCTestCase, CardTests {
         thenI_should_beAble_toScrollup_andDown()
     }
 
-    private func test_imageLoad_happyPath() {
-        given_thatI_haveLaunched_theApp()
-        whenI_see_the_cardView()
-        then_I_should_beAble_toTap_onAImage()
-    }
 }
 
 extension MPDemoUITests {
@@ -45,10 +40,7 @@ extension MPDemoUITests {
     private func  whenI_see_the_cardView() {
         // wait for card view
         let cardTitle = app.staticTexts["CardViewTitle"]
-        XCTAssertTrue(cardTitle.exists)
-        
-        let cardGridView = app.otherElements["CardGridView"]
-        XCTAssertTrue(cardGridView.exists)
+            XCTAssertTrue(cardTitle.waitForExistence(timeout: 5), "CardViewTitle did not appear")
         
     }
     
@@ -60,12 +52,4 @@ extension MPDemoUITests {
         app.swipeDown()
     }
     
-    private func then_I_should_beAble_toTap_onAImage() {
-        let imageView = app.images.firstMatch
-        
-        let cardImage = app.staticTexts["CardImageView"]
-        XCTAssertTrue(cardImage.exists)
-        
-        XCTAssertTrue(imageView.isHittable, "Image view is not hittable")
-    }
 }

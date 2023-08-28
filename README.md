@@ -36,10 +36,10 @@ Demo extracting info from the following API
 
 - First screen: displays card image with sequenced card size 
 
-/var/folders/b5/1l5rcf3j4_5cw3bp245vbmy5cm6cq1/T/simulator_screenshot_BE71752C-CAD5-45FF-8032-ECEC74D452E5.png
+![alt text](https://user-images.githubusercontent.com/143112898/263619836-c9c51d2b-49cd-46c4-8bb1-5fd92cacf98e.png)
 
 - Second screen: displays details - remove html tags and displays image and text
-/var/folders/b5/1l5rcf3j4_5cw3bp245vbmy5cm6cq1/T/simulator_screenshot_69D34487-DCA3-4D66-8D30-A1FD1D88C4E1.png
+![alt text](https://user-images.githubusercontent.com/143112898/263619900-24b8fb71-b4d4-44a3-bdc0-84441d7b7d64.png)
  
 ## TODO
 

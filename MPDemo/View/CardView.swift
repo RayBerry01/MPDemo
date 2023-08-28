@@ -26,9 +26,9 @@ struct CardView: View {
                 if let cardInfo = viewModel.cardData {
                     VStack(alignment: .center) {
                         titleView()
-                            .accessibility(label: Text("CardViewTitle"))
+                            .accessibility(identifier: "CardViewTitle")
                         cardGridView(cardInfo: cardInfo)
-                            .accessibility(label: Text("CardGridView"))
+                            .accessibility(identifier: "CardGridView")
                     }
                 } else {
                     ProgressView()
@@ -93,7 +93,7 @@ struct CardView: View {
                             .background(Color.white)
                             .cornerRadius(10)
                             .shadow(radius: 3)
-                            .accessibility(label: Text("CardImageView"))
+                            .accessibility(identifier: "CardImageView")
                     }
                 }
             }
