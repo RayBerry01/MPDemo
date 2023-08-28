@@ -10,5 +10,5 @@ import SwiftUI
 struct CustomColor {
     
     static let backgroundColor = Color("backgroundColor")
-    
+
 }

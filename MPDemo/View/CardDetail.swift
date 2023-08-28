@@ -14,27 +14,27 @@ struct CardDetail: View {
     let product: Product
     
     //MARK: MainView
-    
     var body: some View {
         VStack {
             itemView()
             textView()
-        }.padding()
+        }
+        .padding()
     }
     
     //MARK: SubViews
-     func textView() ->  some View {
+    private func textView() ->  some View {
         return VStack {
             Spacer()
             Text(product.description.stripOutHtml() ?? "")
             Spacer()
-            Text(product.price.currency + String(product.price.value))
+            Text(product.price.currency + String(format: "%.2f",product.price.value))
                 .foregroundColor(.pink)
                 .font(.largeTitle.weight(.bold))
         }
     }
     
-    func itemView() -> some View {
+    private func itemView() -> some View {
         return VStack {
             //URL Caching done via AppDelegate
             AsyncImage(url: URL(string: product.productImage.link.href ))
@@ -53,8 +53,9 @@ struct CardDetail: View {
                 }
             }
             .cornerRadius(10)
-        }.border(CustomColor.backgroundColor, width: 4)
-            .shadow(radius: 3)
+        }
+        .border(CustomColor.backgroundColor, width: 4)
+        .shadow(radius: 3)
     }
 }
 

@@ -34,6 +34,6 @@ final class MPDemoTests: XCTestCase {
     func testSampleCard() {
         let sut = MockCardService()
         let result = sut.fetchSampleCard()
-        XCTAssertEqual(result?.price.value, 4.51)
+        XCTAssertEqual(result?.price.value, 4.50)
     }
 }

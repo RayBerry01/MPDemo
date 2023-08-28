@@ -15,10 +15,12 @@ class MockCardService: CardServiceProtocol {
        mockServiceCalled = true
         return nil
     }
+    
+    // Used for detailed card preview
     func fetchSampleCard() -> Product? {
         let sampleLink = Link(href: "https://moonpig.github.io/tech-test-frontend/image/pu041d/0.jpg", method: "Get")
         let sampleProductImage = ProductImage(link: sampleLink)
-        let samplePrice = Price(value: 4.51, currency: "£")
+        let samplePrice = Price(value: 4.50, currency: "£")
         
         let sampleProduct = Product(
             price: samplePrice,
@@ -29,7 +31,6 @@ class MockCardService: CardServiceProtocol {
             description: "This is a sample card details description.",
             productImage: sampleProductImage
         )
-        
         return sampleProduct
     }
 }

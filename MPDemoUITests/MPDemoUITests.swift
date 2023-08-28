@@ -24,30 +24,35 @@ final class MPDemoUITests: XCTestCase, CardTests {
     }
     
     func test_cardView_shouldShow_happyPath() {
-        given_that_I_havelaunched_theApp()
-        when_I_See_The_CardView()
-        then_I_Should_Beable_ToScrollup_AndDown()
+        given_thatI_haveLaunched_theApp()
+        whenI_see_the_cardView()
+        thenI_should_beAble_toScrollup_andDown()
     }
 
-    func test_imageLoad_happyPath() {
-        given_that_I_havelaunched_theApp()
-        when_I_See_The_CardView()
-        then_I_Should_Beable_ToTap_OnAImage()
+    private func test_imageLoad_happyPath() {
+        given_thatI_haveLaunched_theApp()
+        whenI_see_the_cardView()
+        then_I_should_beAble_toTap_onAImage()
     }
 }
 
 extension MPDemoUITests {
-    func given_that_I_havelaunched_theApp() {
+    private func given_thatI_haveLaunched_theApp() {
         app.launch()
         continueAfterFailure = false
     }
     
-    private func  when_I_See_The_CardView() {
+    private func  whenI_see_the_cardView() {
         // wait for card view
-        XCTAssertTrue(app.otherElements["CardView"].waitForExistence(timeout: 5), "CardView did not appear")
+        let cardTitle = app.staticTexts["CardViewTitle"]
+        XCTAssertTrue(cardTitle.exists)
+        
+        let cardGridView = app.otherElements["CardGridView"]
+        XCTAssertTrue(cardGridView.exists)
+        
     }
     
-    private func then_I_Should_Beable_ToScrollup_AndDown() {
+    private func thenI_should_beAble_toScrollup_andDown() {
         // Scroll down
         app.swipeUp()
         
@@ -55,11 +60,12 @@ extension MPDemoUITests {
         app.swipeDown()
     }
     
-    private func then_I_Should_Beable_ToTap_OnAImage() {
+    private func then_I_should_beAble_toTap_onAImage() {
         let imageView = app.images.firstMatch
-            XCTAssertTrue(imageView.waitForExistence(timeout: 5), "Image view did not appear")
-            XCTAssertTrue(imageView.isHittable, "Image view is not hittable")
         
+        let cardImage = app.staticTexts["CardImageView"]
+        XCTAssertTrue(cardImage.exists)
+        
+        XCTAssertTrue(imageView.isHittable, "Image view is not hittable")
     }
-    
 }

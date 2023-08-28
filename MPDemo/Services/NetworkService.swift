@@ -32,7 +32,8 @@ class NetworkService: CardServiceProtocol {
                 // if status 200 - all ok
             case 200:
                 let cardResponse = try decodeCard(from: data)
-                //                    print(String(data: data, encoding: .utf8) ?? "Unable to process data")
+                // Keep for debugging
+                // print(String(data: data, encoding: .utf8) ?? "Unable to process data")
                 return cardResponse
                 //otherwise handle errors
             default:
